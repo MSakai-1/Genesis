@@ -140,6 +140,7 @@ def main():
     parser.add_argument("-e", "--exp_name", type=str, default="go2-walking")
     parser.add_argument("-l", "--log_dir", type=str, default="logs")
     parser.add_argument("-B", "--num_envs", type=int, default=4096)
+    parser.add_argument("-s", "--substeps", type=int, default=2)
     parser.add_argument("--max_iterations", type=int, default=100)
     args = parser.parse_args()
 
@@ -148,6 +149,8 @@ def main():
     log_dir = f"{args.log_dir}/{args.exp_name}"
     env_cfg, obs_cfg, reward_cfg, command_cfg = get_cfgs()
     train_cfg = get_train_cfg(args.exp_name, args.max_iterations)
+
+    env_cfg["substeps"] = args.substeps
 
     if os.path.exists(log_dir):
         shutil.rmtree(log_dir)
