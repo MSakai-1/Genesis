@@ -49,8 +49,8 @@ class Go2Env:
             show_viewer=show_viewer,
         )
 
-        # add plain
-        self.scene.add_entity(gs.morphs.URDF(file="urdf/plane/plane.urdf", fixed=True))
+        # add ground
+        self.ground = self.scene.add_entity(gs.morphs.URDF(file="urdf/plane/plane.urdf", fixed=True))
 
         # add robot
         self.base_init_pos = torch.tensor(self.env_cfg["base_init_pos"], device=self.device)
@@ -279,5 +279,8 @@ class Go2Env:
 
     def randomize_friction(self):
         # 各リンクの摩擦係数
-        friction = 0.5 + torch.rand(1).item() # 0.5~1.5
+        # friction = 0.5 + torch.rand(1).item() # 0.5~1.5
+        friction = 0.2 + 1.6*torch.rand(1).item() # 0.2~1.8
+
         self.robot.set_friction(friction)
+        self.ground.set_friction(friction)
