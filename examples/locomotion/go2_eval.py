@@ -13,12 +13,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-e", "--exp_name", type=str, default="go2-walking")
     parser.add_argument("-l", "--log_dir", type=str, default="logs")
+    parser.add_argument("-p", "--param_name", type=str, default="test")
     parser.add_argument("--ckpt", type=int, default=100)
     args = parser.parse_args()
 
     gs.init()
 
-    log_dir = f"{args.log_dir}/{args.exp_name}"
+    log_dir = f"{args.log_dir}/{args.exp_name}/{args.param_name}"
     env_cfg, obs_cfg, reward_cfg, command_cfg, train_cfg = pickle.load(open(f"{log_dir}/cfgs.pkl", "rb"))
     reward_cfg["reward_scales"] = {}
 
