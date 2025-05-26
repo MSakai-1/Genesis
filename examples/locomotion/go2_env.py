@@ -35,8 +35,8 @@ class Go2Env:
             sim_options=gs.options.SimOptions(dt=self.dt, substeps=env_cfg["substeps"]),
             viewer_options=gs.options.ViewerOptions(
                 max_FPS=int(0.5 / self.dt),
-                camera_pos=(2.0, 0.0, 2.5),
-                camera_lookat=(0.0, 0.0, 0.5),
+                camera_pos=(1.0, 4.0, 0.3),
+                camera_lookat=(1.0, 0.0, 0.3),
                 camera_fov=40,
             ),
             vis_options=gs.options.VisOptions(n_rendered_envs=1),
