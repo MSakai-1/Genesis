@@ -1,3 +1,5 @@
+### ❗This repositry is based on the lecture "agent-system 2025 @utokyo" repositry: https://github.com/kindsenior/Genesis.git
+
 ![Genesis](imgs/big_text.png)
 
 ![Teaser](imgs/teaser.png)
