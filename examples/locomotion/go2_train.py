@@ -127,9 +127,9 @@ def get_cfgs():
     }
     command_cfg = {
         "num_commands": 3,
-        "lin_vel_x_range": [0.5, 0.5],
-        "lin_vel_y_range": [0, 0],
-        "ang_vel_range": [0, 0],
+        "lin_vel_x_range": [0, 0.5],
+        "lin_vel_y_range": [-0.05, 0.05],
+        "ang_vel_range": [-0.3, 0.3],
     }
 
     return env_cfg, obs_cfg, reward_cfg, command_cfg
