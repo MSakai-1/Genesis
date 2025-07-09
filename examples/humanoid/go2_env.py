@@ -76,20 +76,6 @@ class Go2Env:
         kp_map = self.env_cfg["kp"]
         kd_map = self.env_cfg["kd"]
         
-        def get_joint_type(name):
-            if "hip_yaw" in name:
-                return "hip_yaw"
-            elif "hip_roll" in name:
-                return "hip_roll"
-            elif "hip_pitch" in name:
-                return "hip_pitch"
-            elif "knee" in name:
-                return "knee"
-            elif "ankle" in name:
-                return "ankle"
-            else:
-                raise ValueError(f"Unknown joint type for PD gain assignment: {name}")
-        
         kp_list = [kp_map[get_joint_type(name)] for name in self.env_cfg["dof_names"]]
         kd_list = [kd_map[get_joint_type(name)] for name in self.env_cfg["dof_names"]]
 
@@ -307,15 +293,39 @@ class Go2Env:
         self.robot.set_friction(friction)
         self.ground.set_friction(friction)
 
+    def get_joint_type(self, name):
+        if "hip_yaw" in name:
+            return "hip_yaw"
+        elif "hip_roll" in name:
+            return "hip_roll"
+        elif "hip_pitch" in name:
+            return "hip_pitch"
+        elif "knee" in name:
+            return "knee"
+        elif "ankle" in name:
+            return "ankle"
+        else:
+            raise ValueError(f"Unknown joint type for PD gain assignment: {name}")
+
     def randomize_pd_gains(self):
-        # pd gains of the joint control
-        num_dofs = self.robot.n_dofs
-        kp_min, kp_max = 18.0, 30.0
-        kv_min, kv_max = 0.7, 1.2
-        kp = torch.rand(num_dofs, device=self.device) * (kp_max - kp_min) + kp_min
-        kv = torch.rand(num_dofs, device=self.device) * (kv_max - kv_min) + kv_min
-        self.robot.set_dofs_kp(kp)
-        self.robot.set_dofs_kv(kv)
+        kp_variation = 0.1
+        kd_variation = 0.1
+        kp_map = self.env_cfg["kp"]
+        kd_map = self.env_cfg["kd"]
+
+        kp_list = []
+        kd_list = []
+        for name in self.env_cfg["dof_names"]:
+            joint_type = self.get_joint_type(name)
+            base_kp = kp_map[joint_type]
+            base_kd = kd_map[joint_type]
+            rand_kp = base_kp * (1.0 + kp_variation * (2 * torch.rand(1).item() - 1))
+            rand_kd = base_kd * (1.0 + kd_variation * (2 * torch.rand(1).item() - 1))
+            kp_list.append(rand_kp)
+            kd_list.append(rand_kd)
+
+        self.robot.set_dofs_kp(kp_list, self.motor_dofs)
+        self.robot.set_dofs_kv(kd_list, self.motor_dofs)
 
     def randomize_armature(self):
         # joint's rotor inertia
