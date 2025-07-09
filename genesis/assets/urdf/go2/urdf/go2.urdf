@@ -12,7 +12,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0.021112 0 -0.005366"
         rpy="0 0 0" />
       <mass
-        value="6.921" />
+        value="10.381500" />
       <inertia
         ixx="0.02448"
         ixy="0.00012166"
@@ -125,7 +125,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="-0.0054 0.00194 -0.000105"
         rpy="0 0 0" />
       <mass
-        value="0.678" />
+        value="1.017000" />
       <inertia
         ixx="0.00048"
         ixy="-3.01E-06"
@@ -180,7 +180,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="-0.00374 -0.0223 -0.0327"
         rpy="0 0 0" />
       <mass
-        value="1.152" />
+        value="1.728000" />
       <inertia
         ixx="0.00584"
         ixy="8.72E-05"
@@ -235,7 +235,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0.00548 -0.000975 -0.115"
         rpy="0 0 0" />
       <mass
-        value="0.154" />
+        value="0.231000" />
       <inertia
         ixx="0.00108"
         ixy="3.4E-07"
@@ -341,7 +341,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0 0 0"
         rpy="0 0 0" />
       <mass
-        value="0.04" />
+        value="0.060000" />
       <inertia
         ixx="9.6e-06"
         ixy="0"
@@ -391,7 +391,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="-0.0054 -0.00194 -0.000105"
         rpy="0 0 0" />
       <mass
-        value="0.678" />
+        value="1.017000" />
       <inertia
         ixx="0.00048"
         ixy="3.01E-06"
@@ -446,7 +446,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="-0.00374 0.0223 -0.0327"
         rpy="0 0 0" />
       <mass
-        value="1.152" />
+        value="1.728000" />
       <inertia
         ixx="0.00584"
         ixy="-8.72E-05"
@@ -501,7 +501,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0.00548 0.000975 -0.115"
         rpy="0 0 0" />
       <mass
-        value="0.154" />
+        value="0.231000" />
       <inertia
         ixx="0.00108"
         ixy="-3.4E-07"
@@ -607,7 +607,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0 0 0"
         rpy="0 0 0" />
       <mass
-        value="0.04" />
+        value="0.060000" />
       <inertia
         ixx="9.6e-06"
         ixy="0"
@@ -657,7 +657,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0.0054 0.00194 -0.000105"
         rpy="0 0 0" />
       <mass
-        value="0.678" />
+        value="1.017000" />
       <inertia
         ixx="0.00048"
         ixy="3.01E-06"
@@ -712,7 +712,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="-0.00374 -0.0223 -0.0327"
         rpy="0 0 0" />
       <mass
-        value="1.152" />
+        value="1.728000" />
       <inertia
         ixx="0.00584"
         ixy="8.72E-05"
@@ -767,7 +767,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0.00548 -0.000975 -0.115"
         rpy="0 0 0" />
       <mass
-        value="0.154" />
+        value="0.231000" />
       <inertia
         ixx="0.00108"
         ixy="3.4E-07"
@@ -873,7 +873,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0 0 0"
         rpy="0 0 0" />
       <mass
-        value="0.04" />
+        value="0.060000" />
       <inertia
         ixx="9.6e-06"
         ixy="0"
@@ -923,7 +923,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0.0054 -0.00194 -0.000105"
         rpy="0 0 0" />
       <mass
-        value="0.678" />
+        value="1.017000" />
       <inertia
         ixx="0.00048"
         ixy="-3.01E-06"
@@ -978,7 +978,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="-0.00374 0.0223 -0.0327"
         rpy="0 0 0" />
       <mass
-        value="1.152" />
+        value="1.728000" />
       <inertia
         ixx="0.00584"
         ixy="-8.72E-05"
@@ -1033,7 +1033,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0.00548 0.000975 -0.115"
         rpy="0 0 0" />
       <mass
-        value="0.154" />
+        value="0.231000" />
       <inertia
         ixx="0.00108"
         ixy="-3.4E-07"
@@ -1139,7 +1139,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0 0 0"
         rpy="0 0 0" />
       <mass
-        value="0.04" />
+        value="0.060000" />
       <inertia
         ixx="9.6e-06"
         ixy="0"
@@ -1189,7 +1189,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0 0 0"
         rpy="0 0 0" />
       <mass
-        value="0.01" /> <!-- set mass -->
+        value="0.015000" /> <!-- set mass -->
       <inertia
         ixx="0"
         ixy="0"
@@ -1219,7 +1219,7 @@ Stephen Brawner (brawner@gmail.com)
         xyz="0 0 0"
         rpy="0 0 0" />
       <mass
-        value="0.01" /> <!-- set mass -->
+        value="0.015000" /> <!-- set mass -->
       <inertia
         ixx="0"
         ixy="0"
