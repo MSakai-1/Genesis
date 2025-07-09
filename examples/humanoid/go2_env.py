@@ -58,7 +58,7 @@ class Go2Env:
         self.inv_base_init_quat = inv_quat(self.base_init_quat)
         self.robot = self.scene.add_entity(
             gs.morphs.URDF(
-                file="urdf/h1/h1_10dof.urdf",
+                file="Genesis/h1/h1_10dof.urdf",
                 pos=self.base_init_pos.cpu().numpy(),
                 quat=self.base_init_quat.cpu().numpy(),
             ),
@@ -73,11 +73,12 @@ class Go2Env:
         # PD control parameters
         #self.robot.set_dofs_kp([self.env_cfg["kp"]] * self.num_actions, self.motor_dofs)
         #self.robot.set_dofs_kv([self.env_cfg["kd"]] * self.num_actions, self.motor_dofs)
+        
         kp_map = self.env_cfg["kp"]
         kd_map = self.env_cfg["kd"]
         
-        kp_list = [kp_map[get_joint_type(name)] for name in self.env_cfg["dof_names"]]
-        kd_list = [kd_map[get_joint_type(name)] for name in self.env_cfg["dof_names"]]
+        kp_list = [kp_map[self.get_joint_type(name)] for name in self.env_cfg["dof_names"]]
+        kd_list = [kd_map[self.get_joint_type(name)] for name in self.env_cfg["dof_names"]]
 
         self.robot.set_dofs_kp(kp_list, self.motor_dofs)
         self.robot.set_dofs_kv(kd_list, self.motor_dofs)
@@ -294,18 +295,18 @@ class Go2Env:
         self.ground.set_friction(friction)
 
     def get_joint_type(self, name):
-        if "hip_yaw" in name:
-            return "hip_yaw"
-        elif "hip_roll" in name:
-            return "hip_roll"
-        elif "hip_pitch" in name:
-            return "hip_pitch"
-        elif "knee" in name:
-            return "knee"
-        elif "ankle" in name:
-            return "ankle"
-        else:
-            raise ValueError(f"Unknown joint type for PD gain assignment: {name}")
+            if "hip_yaw" in name:
+                return "hip_yaw"
+            elif "hip_roll" in name:
+                return "hip_roll"
+            elif "hip_pitch" in name:
+                return "hip_pitch"
+            elif "knee" in name:
+                return "knee"
+            elif "ankle" in name:
+                return "ankle"
+            else:
+                raise ValueError(f"Unknown joint type for PD gain assignment: {name}")
 
     def randomize_pd_gains(self):
         kp_variation = 0.1
