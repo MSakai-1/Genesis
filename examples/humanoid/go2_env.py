@@ -58,7 +58,7 @@ class Go2Env:
         self.inv_base_init_quat = inv_quat(self.base_init_quat)
         self.robot = self.scene.add_entity(
             gs.morphs.URDF(
-                file="urdf/go2/urdf/go2.urdf",
+                file="urdf/h1/h1_10dof.urdf",
                 pos=self.base_init_pos.cpu().numpy(),
                 quat=self.base_init_quat.cpu().numpy(),
             ),
@@ -71,8 +71,30 @@ class Go2Env:
         self.motor_dofs = [self.robot.get_joint(name).dof_idx_local for name in self.env_cfg["dof_names"]]
 
         # PD control parameters
-        self.robot.set_dofs_kp([self.env_cfg["kp"]] * self.num_actions, self.motor_dofs)
-        self.robot.set_dofs_kv([self.env_cfg["kd"]] * self.num_actions, self.motor_dofs)
+        #self.robot.set_dofs_kp([self.env_cfg["kp"]] * self.num_actions, self.motor_dofs)
+        #self.robot.set_dofs_kv([self.env_cfg["kd"]] * self.num_actions, self.motor_dofs)
+        kp_map = self.env_cfg["kp"]
+        kd_map = self.env_cfg["kd"]
+        
+        def get_joint_type(name):
+            if "hip_yaw" in name:
+                return "hip_yaw"
+            elif "hip_roll" in name:
+                return "hip_roll"
+            elif "hip_pitch" in name:
+                return "hip_pitch"
+            elif "knee" in name:
+                return "knee"
+            elif "ankle" in name:
+                return "ankle"
+            else:
+                raise ValueError(f"Unknown joint type for PD gain assignment: {name}")
+        
+        kp_list = [kp_map[get_joint_type(name)] for name in self.env_cfg["dof_names"]]
+        kd_list = [kd_map[get_joint_type(name)] for name in self.env_cfg["dof_names"]]
+
+        self.robot.set_dofs_kp(kp_list, self.motor_dofs)
+        self.robot.set_dofs_kv(kd_list, self.motor_dofs)
 
         # prepare reward functions and multiply reward scales by dt
         self.reward_functions, self.episode_sums = dict(), dict()
@@ -170,9 +192,9 @@ class Go2Env:
                 self.base_ang_vel * self.obs_scales["ang_vel"],  # 3
                 self.projected_gravity,  # 3
                 self.commands * self.commands_scale,  # 3
-                (self.dof_pos - self.default_dof_pos) * self.obs_scales["dof_pos"],  # 12
-                self.dof_vel * self.obs_scales["dof_vel"],  # 12
-                self.actions,  # 12
+                (self.dof_pos - self.default_dof_pos) * self.obs_scales["dof_pos"],  # 10
+                self.dof_vel * self.obs_scales["dof_vel"],  # 10
+                self.actions,  # 10
             ],
             axis=-1,
         )
