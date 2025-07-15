@@ -114,10 +114,10 @@ def get_cfgs():
     obs_cfg = {
         "num_obs": 39,
         "obs_scales": {
-            "lin_vel": 2.0,
-            "ang_vel": 0.25,
+            "lin_vel": 1.0,
+            "ang_vel": 1.0,
             "dof_pos": 1.0,
-            "dof_vel": 0.05,
+            "dof_vel": 1.0,
         },
     }
     reward_cfg = {
