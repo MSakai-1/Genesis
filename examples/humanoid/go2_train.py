@@ -47,7 +47,7 @@ def get_train_cfg(exp_name, max_iterations):
             "resume_path": None,
             "run_name": "",
             "runner_class_name": "runner_class_name",
-            "save_interval": 100,
+            "save_interval": 50,
         },
         "runner_class_name": "OnPolicyRunner",
         "seed": 1,
@@ -58,39 +58,47 @@ def get_train_cfg(exp_name, max_iterations):
 
 def get_cfgs():
     env_cfg = {
-        "num_actions": 12,
+        "num_actions": 10,
         # joint/link names
         "default_joint_angles": {  # [rad]
-            "FL_hip_joint": 0.0,
-            "FR_hip_joint": 0.0,
-            "RL_hip_joint": 0.0,
-            "RR_hip_joint": 0.0,
-            "FL_thigh_joint": 0.8,
-            "FR_thigh_joint": 0.8,
-            "RL_thigh_joint": 1.0,
-            "RR_thigh_joint": 1.0,
-            "FL_calf_joint": -1.5,
-            "FR_calf_joint": -1.5,
-            "RL_calf_joint": -1.5,
-            "RR_calf_joint": -1.5,
+            "left_hip_yaw_joint" : 0.0,
+            "left_hip_roll_joint" : 0,            
+            "left_hip_pitch_joint" : -0.4,      
+            "left_knee_joint" : 0.8,    
+            "left_ankle_joint" : -0.4,  
+            "right_hip_yaw_joint" : 0.0, 
+            "right_hip_roll_joint" : 0.0,
+            "right_hip_pitch_joint" : -0.4,                                    
+            "right_knee_joint" : 0.8,                                          
+            "right_ankle_joint" : -0.4, 
         },
         "dof_names": [
-            "FR_hip_joint",
-            "FR_thigh_joint",
-            "FR_calf_joint",
-            "FL_hip_joint",
-            "FL_thigh_joint",
-            "FL_calf_joint",
-            "RR_hip_joint",
-            "RR_thigh_joint",
-            "RR_calf_joint",
-            "RL_hip_joint",
-            "RL_thigh_joint",
-            "RL_calf_joint",
+            "left_hip_yaw_joint",
+            "left_hip_roll_joint",            
+            "left_hip_pitch_joint",      
+            "left_knee_joint",    
+            "left_ankle_joint",  
+            "right_hip_yaw_joint", 
+            "right_hip_roll_joint",
+            "right_hip_pitch_joint",                                    
+            "right_knee_joint",                                          
+            "right_ankle_joint", 
         ],
         # PD
-        "kp": 20.0,
-        "kd": 0.5,
+        "kp": {
+            "hip_yaw": 200.0,
+            "hip_roll": 200.0,
+            "hip_pitch": 200.0,
+            "knee": 300.0,
+            "ankle": 40.0,
+        },
+        "kd": {
+            "hip_yaw": 5.0,
+            "hip_roll": 5.0,
+            "hip_pitch": 5.0,
+            "knee": 6.0,
+            "ankle": 2.0,
+        },
         # termination
         "termination_if_roll_greater_than": 10,  # degree
         "termination_if_pitch_greater_than": 10,
@@ -104,7 +112,7 @@ def get_cfgs():
         "clip_actions": 100.0,
     }
     obs_cfg = {
-        "num_obs": 45,
+        "num_obs": 39,
         "obs_scales": {
             "lin_vel": 2.0,
             "ang_vel": 0.25,
@@ -114,7 +122,7 @@ def get_cfgs():
     }
     reward_cfg = {
         "tracking_sigma": 0.25,
-        "base_height_target": 0.3,
+        "base_height_target": 0.98,
         "feet_height_target": 0.075,
         "reward_scales": {
             "tracking_lin_vel": 1.0,
@@ -127,7 +135,7 @@ def get_cfgs():
     }
     command_cfg = {
         "num_commands": 3,
-        "lin_vel_x_range": [0, 0.5],
+        "lin_vel_x_range": [0, 3],
         "lin_vel_y_range": [-0.05, 0.05],
         "ang_vel_range": [-0.3, 0.3],
     }
